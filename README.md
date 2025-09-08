@@ -84,16 +84,48 @@ Fino a qui
 ## Design for Point-to-Point Tasks
 - SCARA robot joint limits: `±132°` (θ1), `±141°` (θ2).  
 - Obstacle: disk with radius `0.3 m` at `(1.2, 0.1) m`.  
-- Maximum reach: `2 m`.  
-- Goal: find the optimal link length ratio for picking parts from an **L-shaped palette** and placing them into another identical palette.  
+- Robot's maximum reach: `2 m`.  
+- Goal: find the optimal link length ratio for picking parts from an **L-shaped palette** (2 m × 1 m, width 0.5 m) and placing them into another identical palette. In pick-and-place tasks, the robot may encounter temporary singularities, but these are manageable since only point-to-point movements are required.
 - Optimal link lengths: `l1 = 0.9 m`, `l2 = 1.1 m`.  
 - The configuration allows the robot to reach all points on the L-shaped palette for **pick-and-place tasks**, with temporary singularities not posing an issue.
 
+
+To maximize the workspace, two constraints were considered: the end-effector maximum reach `l1 + l2 ≤ 2`, and obstacle avoidance for `l1`, ensuring `d_o - r_o ≥ l1`, where `d_o` is the distance to the obstacle center and `r_o` its radius.  
+
+If `l1 > d_o - r_o`, the workspace would split into two parts because link 1 cannot pass through the obstacle (Figure 5). The optimal link ratio is generally 1, balancing reach and obstacle clearance.
+
+![Workspace boundaries, links and obstacle](images/2sbagliata.jpg)
+*Figure 5: Workspace boundaries, links and obstacle*
+
+Following these constraints, the chosen link lengths are `l1 = 0.9 m` and `l2 = 1.1 m`, allowing the robot to reach all points of the L-shaped palette. The palette is rotated by -90° to fit into the workspace.
+
+![Workspace boundaries for pick and place task](images/Lshape.jpg)
+*Figure 6: Workspace boundaries for pick and place task*
+
+This configuration enables full pick-and-place coverage of the L-shaped palette. Temporary singularities may occur during movement, but they do not affect this point-to-point task.
+
 ---
 
+
 ## Design for Process Tasks
-- In process tasks (e.g., laser applications), singularities must be avoided to prevent loss of control or trajectory errors.  
-- The previously selected link lengths provide a workspace that avoids singularities while following the contours of the shape.
+
+Process tasks present challenges due to singularities, where small joint variations can cause large deviations in the end-effector (x, y) position. Singularities often occur when the robot's arms are fully extended (`q2 = 0`), especially during a switch from "elbow up" to "elbow down" configuration.
+
+In applications like laser processing, crossing singularities can cause unintended movements, loss of control, or trajectory disruptions. Thus, it is crucial to avoid singularities in these tasks.
+
+Consider the scenario in Figure 7: the upper part shows an "elbow up" configuration and the lower part an "elbow down" configuration. Traversing a singularity to change configuration is not ideal for the robot.
+
+![Configuration to avoid](images/Lpercorso.jpg)
+*Figure 7: Configuration to avoid*
+
+The workspace from the previous exercise is suitable for link lengths used. By analyzing the joint space and L-shape placement, this configuration prevents the robot from crossing singularities while following the shape's contours (Figure 8).
+
+![Workspace boundaries for process task](images/figura.png)
+*Figure 8: Workspace boundaries for process task*
+
+
+
+
 
 ---
 
