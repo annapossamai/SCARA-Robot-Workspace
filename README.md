@@ -1,4 +1,4 @@
-# Optimal Kinematic Design of Robots – Lab 1: SCARA Workspace Design
+# Optimal Kinematic Design of Robots – SCARA Workspace Design
 
 **Author:** Anna Possamai  
 **Instructor:** Philippe Wenger  
@@ -9,7 +9,7 @@
 
 ## Introduction
 
-This repository contains the MATLAB implementation for **Lab 1: Workspace-based Design of a SCARA Robot**. The lab demonstrates how to use the concept of **workspace** in the design of an interactive MATLAB function for a SCARA robot, taking into account joint limits, link lengths, and obstacles.
+This repository contains the MATLAB implementation for **Workspace-based Design of a SCARA Robot**. The lab demonstrates how to use the concept of **workspace** in the design of an interactive MATLAB function for a SCARA robot, taking into account joint limits, link lengths, and obstacles.
 
 ---
 
