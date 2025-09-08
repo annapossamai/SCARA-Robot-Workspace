@@ -41,7 +41,7 @@ The figure shows the workspace boundaries for $l1 = 1$, $l2 = 0.2$, with joint l
 
 It first checks whether the obstacle obstructs link 2. If it does, an error is displayed and no workspace is plotted; otherwise, the robot’s workspace is generated.
 
-![Condition of no obstruction of link 2](Images/posizione_obst.jpg)
+![Condition of no obstruction of link 2](images/posizione_obst.jpg)
 *Figure 2: Condition of no obstruction of link 2*
 
 The obstruction condition is determined by checking if:
@@ -61,12 +61,12 @@ $$
 l_t = \sqrt{x_o^2 + y_o^2 - r_o^2}
 $$
 
-![Angle limits condition](Images/limitiangoli.jpg)
+![Angle limits condition](images/limitiangoli.jpg)
 *Figure 3: Angle limits condition*
 
 Next, the direct kinematic model `dkm(l1, l2, q1, q2)` is used to compute (x, y) coordinates within the adjusted joint limits, and the workspace is plotted. Links are shown in black and the obstacle in red, demonstrating how the obstacle restricts the workspace.
 
-![Workspace boundaries, links and obstacle](Images/work_obst.jpg)
+![Workspace boundaries, links and obstacle](images/work_obst.jpg)
 *Figure 4: Workspace boundaries, links and obstacle*
 
 Currently, the code only handles the case where both `q1` limits intersect the obstacle. Other scenarios, such as when only one limit intersects, are not managed and would require future implementation.
@@ -74,6 +74,12 @@ Currently, the code only handles the case where both `q1` limits intersect the o
 
 
 ---
+
+
+
+Fino a qui
+
+
 
 ## Design for Point-to-Point Tasks
 - SCARA robot joint limits: `±132°` (θ1), `±141°` (θ2).  
