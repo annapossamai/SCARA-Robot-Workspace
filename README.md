@@ -32,8 +32,9 @@ $$
 - **Workspace without obstacle:** `workspace(l1, l2, q1min, q1max, q2min, q2max)` calculates the workspace boundaries using the direct kinematics function `dkm(l1, l2, q1, q2)` which takes link lengths and joint limits as inputs and outputs the corresponding `(x, y)` coordinates.
 
 ![Workspace without obstacle](images/noobstacle.png)
+*Figure 1: Workspace boundaries, without obstacle*
 
-The figure shows the workspace boundaries for $l1 = 1$, $l2 = 0.2$, with joint limits $-70 ≤ q1 ≤ 45$ and $-70 ≤ q2 ≤ 45$. Colored lines indicate the end-effector paths: yellow for q1 varying at $q2 = q2_{min}$, blue at $q2 = q2_{max}$, red at $q2 = 0$ (fully extended), blue at $q1 = q1_{min}$, and green at $q1 = q1_{max}$ with $q2$ varying.
+The Figure 1 shows the workspace boundaries for $l1 = 1$, $l2 = 0.2$, with joint limits $-70 ≤ q1 ≤ 45$ and $-70 ≤ q2 ≤ 45$. Colored lines indicate the end-effector paths: yellow for q1 varying at $q2 = q2_{min}$, blue at $q2 = q2_{max}$, red at $q2 = 0$ (fully extended), blue at $q1 = q1_{min}$, and green at $q1 = q1_{max}$ with $q2$ varying.
 
 
 - **Workspace with obstacle:** `workspace_obst(l1, l2, q1min, q1max, q2min, q2max, xo, yo, ro)` considers a disk-shaped obstacle that obstructs link 1, calculates joint limits to avoid collisions, and plots the restricted workspace.
