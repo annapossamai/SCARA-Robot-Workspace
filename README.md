@@ -18,8 +18,12 @@ This repository contains the MATLAB implementation for **Lab 1: Workspace-based 
 ### 1. Direct Kinematics and Singularities
 - The direct kinematics model was computed to determine the end-effector position as a function of joint angles:
   
-x = a1cos(q1) + a2cos(q1 + q2)
-y = a1sin(q1) + a2sin(q1 + q2)
+$$
+\begin{cases}
+x = a_1 \cos(q_1) + a_2 \cos(q_1 + q_2) \\
+y = a_1 \sin(q_1) + a_2 \sin(q_1 + q_2)
+\end{cases}
+$$
 
 - The Jacobian was used to identify joint singularities, which occur at `q2 = 0` and `q2 = π`.
 
