@@ -33,9 +33,45 @@ $$
 
 ![Workspace without obstacle](images/noobstacle.png)
 
+The figure shows the workspace boundaries for $l1 = 1$, $l2 = 0.2$, with joint limits $-70 ≤ q1 ≤ 45$ and $-70 ≤ q2 ≤ 45$. Colored lines indicate the end-effector paths: yellow for q1 varying at $q2 = q2_{min}$, blue at $q2 = q2_{max}$, red at $q2 = 0$ (fully extended), blue at $q1 = q1_{min}$, and green at $q1 = q1_{max}$ with $q2$ varying.
+
 
 - **Workspace with obstacle:** `workspace_obst(l1, l2, q1min, q1max, q2min, q2max, xo, yo, ro)` considers a disk-shaped obstacle that obstructs link 1, calculates joint limits to avoid collisions, and plots the restricted workspace.
-- The code currently handles the case where both `q1min` and `q1max` intersect the obstacle, displaying an error if the trajectory cannot be plotted.
+- The function takes link lengths `l1`, `l2`, joint limits `q1min`, `q1max`, `q2min`, `q2max`, and the obstacle’s position and radius `(xo, yo, ro)` as inputs.
+
+It first checks whether the obstacle obstructs link 2. If it does, an error is displayed and no workspace is plotted; otherwise, the robot’s workspace is generated.
+
+![Condition of no obstruction of link 2](Images/posizione_obst.jpg)
+*Figure 2: Condition of no obstruction of link 2*
+
+The obstruction condition is determined by checking if:
+$$ ||X_obst|| + r_o ≥ (l1 - l2)$$
+
+To handle link 1, possible intersections with the obstacle are analyzed (points A and B in Figure 3). The robot halts link 1 movement when it reaches the obstacle, and the joint 1 limits are adjusted accordingly:
+
+$$
+q_{1max\_o} = \theta_{obst} + \alpha, \quad q_{1min\_o} = \theta_{obst} - \alpha
+$$
+
+where
+
+$$
+\theta_{obst} = \text{atan2}(y_o, x_o), \quad
+\alpha = \text{atan2}(r_o, l_t), \quad
+l_t = \sqrt{x_o^2 + y_o^2 - r_o^2}
+$$
+
+![Angle limits condition](Images/limitiangoli.jpg)
+*Figure 3: Angle limits condition*
+
+Next, the direct kinematic model `dkm(l1, l2, q1, q2)` is used to compute (x, y) coordinates within the adjusted joint limits, and the workspace is plotted. Links are shown in black and the obstacle in red, demonstrating how the obstacle restricts the workspace.
+
+![Workspace boundaries, links and obstacle](Images/work_obst.jpg)
+*Figure 4: Workspace boundaries, links and obstacle*
+
+Currently, the code only handles the case where both `q1` limits intersect the obstacle. Other scenarios, such as when only one limit intersects, are not managed and would require future implementation.
+
+
 
 ---
 
