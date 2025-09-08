@@ -29,7 +29,11 @@ $$
 
 ### 2. Workspace Analysis
 - **Main function:** `main_workspace.m` allows users to input joint limits and link lengths to visualize the robot's workspace.
-- **Workspace without obstacle:** `workspace(l1, l2, q1min, q1max, q2min, q2max)` calculates the workspace boundaries using the direct kinematics function `dkm`.
+- **Workspace without obstacle:** `workspace(l1, l2, q1min, q1max, q2min, q2max)` calculates the workspace boundaries using the direct kinematics function `dkm(l1, l2, q1, q2)` which takes link lengths and joint limits as inputs and outputs the corresponding `(x, y)` coordinates.
+
+![Workspace without obstacle](images/noobstacle.png)
+
+
 - **Workspace with obstacle:** `workspace_obst(l1, l2, q1min, q1max, q2min, q2max, xo, yo, ro)` considers a disk-shaped obstacle that obstructs link 1, calculates joint limits to avoid collisions, and plots the restricted workspace.
 - The code currently handles the case where both `q1min` and `q1max` intersect the obstacle, displaying an error if the trajectory cannot be plotted.
 
